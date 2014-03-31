@@ -8,3 +8,6 @@ class Configuration(object):
 
     def set_config(self):
         pass
+
+    def set_args(self, args):
+        pass

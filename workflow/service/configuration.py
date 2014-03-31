@@ -9,6 +9,7 @@ class Configuration(object):
         # self.log = log
         self.m = Model()
         self.configfile = yaml.load(open(file))
+        print()
 
     def get_logging(self):
         """
