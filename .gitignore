@@ -1,3 +1,21 @@
+#ignore thumbnails created by windows
+Thumbs.db
+#ignore files created by OSx
+.DS_Store
+.AppleDouble
+.LSOverride
+# Icon must ends with two \r.
+Icon
+# Thumbnails
+._*
+
+# JetBrains
+.idea/*
+.idea/
+*.iml
+
+
+#########Python#########
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -34,21 +52,12 @@ htmlcov/
 nosetests.xml
 coverage.xml
 
-# Translations
-*.mo
+#########R#########
+# History files
+.Rhistory
 
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
+# Example code in package build process
+*-Ex.R
 
-# Rope
-.ropeproject
-
-# Django stuff:
-*.log
-*.pot
-
-# Sphinx documentation
-docs/_build/
-
+# R data files from past sessions
+.Rdata
