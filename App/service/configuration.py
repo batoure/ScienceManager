@@ -1,6 +1,6 @@
 __author__ = 'Batoure'
 import yaml
-from ..model.configuration import Configuration as Model
+from App.model.configuration import Configuration as Model
 
 
 class Configuration(object):
@@ -9,6 +9,7 @@ class Configuration(object):
         # self.log = log
         self.m = Model()
         self.configfile = yaml.load(open(file))
+        print()
 
     def get_logging(self):
         """
