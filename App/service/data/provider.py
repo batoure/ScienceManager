@@ -1,4 +1,4 @@
-from App.service.data.factory.baseProvider import BaseProvider
+from service.data.factory.baseProvider import BaseProvider
 
 
 class Provider(BaseProvider):

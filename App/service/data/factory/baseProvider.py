@@ -1,4 +1,4 @@
-from App.service.data.factory.db_provider_factories import DbProviderFactories
+from service.data.factory.db_provider_factories import DbProviderFactories
 
 
 class BaseProvider(object):
