@@ -9,7 +9,6 @@ class Configuration(object):
         # self.log = log
         self.m = Model()
         self.configfile = yaml.load(open(file))
-        print()
 
     def get_logging(self):
         """
@@ -18,9 +17,11 @@ class Configuration(object):
         """
         return self.configfile['Logging']
 
-    def get_database_connection(self):
+    def set_database_connection(self, connection):
         """
 
         @param self:
         """
-        pass
+        connection.set_connection_data(self.configfile['ConnectionString'])
+
+        return connection

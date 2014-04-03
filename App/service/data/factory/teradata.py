@@ -8,11 +8,9 @@ class TeradataFactory(object):
         self._connection_settings = None
 
     def __enter__(self):
-        print('Entering...')
         return self
 
     def __exit__(self,  type,  value,  traceback):
-        print('Exiting...')
         return False
 
     @staticmethod
@@ -51,11 +49,9 @@ class Command(object):
         self.command_text = ''
 
     def __enter__(self):
-        print('Entering...')
         return self
 
     def __exit__(self,  type,  value,  traceback):
-        print('Exiting...')
         return False
 
     def execute_scalar(self):
