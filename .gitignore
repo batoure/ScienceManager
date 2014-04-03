@@ -15,6 +15,7 @@ Icon
 *.iml
 *.ipr
 *.iws
+out/*
 
 #########Python#########
 # Byte-compiled / optimized / DLL files
