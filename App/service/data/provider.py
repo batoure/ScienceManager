@@ -1,3 +1,4 @@
+#service.data.provider
 from service.data.factory.baseProvider import BaseProvider
 
 
@@ -8,8 +9,6 @@ class Provider(BaseProvider):
         self._connection_string = ""
         self._connection_settings = connectionSettings
         BaseProvider.__init__(self, connectionSettings)
-
-        pass
 
     def reserve_next_batch_number(self):
         with self._dbProviderFactory.create_connection(self._connection_settings) as conn:
