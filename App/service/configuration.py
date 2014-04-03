@@ -1,6 +1,6 @@
 __author__ = 'Batoure'
 import yaml
-from ..model.configuration import Configuration as Model
+from App.model.configuration import Configuration as Model
 
 
 class Configuration(object):
