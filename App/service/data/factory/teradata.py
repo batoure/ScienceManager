@@ -50,6 +50,14 @@ class Command(object):
         self.command_timeout = 0
         self.command_text = ''
 
+    def __enter__(self):
+        print('Entering...')
+        return self
+
+    def __exit__(self,  type,  value,  traceback):
+        print('Exiting...')
+        return False
+
     def execute_scalar(self):
         return self.connection.execute(self.command_text).fetchone()
 
