@@ -1,11 +1,11 @@
-from App.service.configuration import Configuration
+from service.configuration import Configuration
 # from .service.database import Database
-from App.model.object import Object
+from model.object import Object
 import argparse
 import logging
 import logging.config
-from App.service.data.provider import Provider
-from App.model.connection_settings import ConnectionSettings
+from service.data.provider import Provider
+from model.connection_settings import ConnectionSettings
 
 
 class Program(object):

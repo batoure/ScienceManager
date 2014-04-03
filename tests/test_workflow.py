@@ -1,6 +1,6 @@
 import unittest
 # import mock
-from workflow.workflow import Error
+from App.workflow import Error
 
 
 class TestError(unittest.TestCase):
