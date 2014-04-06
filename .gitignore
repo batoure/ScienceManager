@@ -15,6 +15,7 @@ Icon
 *.iml
 *.ipr
 *.iws
+out/*
 
 #########Python#########
 # Byte-compiled / optimized / DLL files
@@ -62,3 +63,4 @@ coverage.xml
 
 # R data files from past sessions
 .Rdata
+*.log
