@@ -29,7 +29,10 @@ class Program(object):
         self.Log.info('handling arguments')
         self.Log.debug('This should show up in the console')
         self.M.conn = self.M.Conf.set_database_connection(ConnectionSettings())
-        self.Log.debug(self.Args.program)
+        self.S.workflow = Workflow(self.M.conn, self.Log)
+        self.S.workflow.setup_job('hello')
+        self.S.workflow.get_job_details('WorkflowOne')
+        # self.Log.debug(self.Args.program)
 
     def _handle_arguments(self):
         parser = argparse.ArgumentParser(description='Teradata "Science Manager" v0.1 ')

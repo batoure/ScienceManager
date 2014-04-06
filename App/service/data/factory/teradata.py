@@ -47,19 +47,23 @@ class Command(object):
     def __init__(self, connection):
         self.connection = connection
         self.command_timeout = 0
-        self.command_text = ''
+        self.__command_text = None
 
     def __enter__(self):
         return self
+
+    def command_text(self, text, var, log):
+        self.__command_text = text.format(**var)
+        log.info(self.__command_text)
 
     def __exit__(self,  type,  value,  traceback):
         return False
 
     def execute_scalar(self):
-        return self.connection.execute(self.command_text).fetchone()
+        return self.connection.execute(self.__command_text).fetchone()
 
     def execute_non_query(self):
-        return self.connection.execute(self.command_text).rowcount
+        return self.connection.execute(self.__command_text).rowcount
 
     def execute_reader(self):
-        return self.connection.execute(self.command_text).fetchall()
+        return self.connection.execute(self.__command_text).fetchall()
