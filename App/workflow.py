@@ -1,11 +1,15 @@
-from service.configuration import Configuration
-# from .service.database import Database
-from model.object import Object
+#workflow
+import sys
+##python libraries
 import argparse
 import logging
 import logging.config
-from service.data.provider import Provider
-from model.connection_settings import ConnectionSettings
+##
+## Internal libraries
+from service.configuration import Configuration
+from service.workflow import Workflow
+from model.object import Object
+from model.connection import ConnectionSettings
 
 
 class Program(object):
@@ -21,16 +25,22 @@ class Program(object):
         pass
 
     def main(self):
+        self._handle_arguments()
         self.Log.info('handling arguments')
         self.Log.debug('This should show up in the console')
-        self._handle_arguments()
         self.M.conn = self.M.Conf.set_database_connection(ConnectionSettings())
-        self.Log.info(Provider(self.M.conn).reserve_next_batch_number())
-        self.Log.debug(self.Args.program)
+        self.S.workflow = Workflow(self.M.conn, self.Log)
+        self.S.workflow.setup_job('hello')
+        self.S.workflow.get_job_details('WorkflowOne')
+        # self.Log.debug(self.Args.program)
 
     def _handle_arguments(self):
         parser = argparse.ArgumentParser(description='Teradata "Science Manager" v0.1 ')
-        parser.add_argument('--program', type=str, help='set the program to be executed')
+        parser.add_argument('-p', '--program', help='set the program to be executed')
+        parser.add_argument('-l', '--list', help='get a list of available programs')
+        if len(sys.argv) == 1:
+            parser.print_help()
+            sys.exit(1)
         parser.parse_args(namespace=self.Args)
 
 

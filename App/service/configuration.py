@@ -1,11 +1,10 @@
+#service.configuration
 import yaml
-from model.configuration import Configuration as Model
 
 
 class Configuration(object):
     def __init__(self, file):
         # self.log = log
-        self.m = Model()
         self.configfile = yaml.load(open(file))
 
     def get_logging(self):
