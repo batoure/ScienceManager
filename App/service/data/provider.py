@@ -2,6 +2,7 @@
 from service.data.factory.baseProvider import BaseProvider
 #TODO: Add textwrap to a query post processor
 
+
 class Provider(BaseProvider):
 
     def __init__(self, connectionSettings):
