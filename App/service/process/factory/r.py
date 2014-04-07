@@ -1,12 +1,12 @@
 from subprocess import Popen, PIPE
 
 
-class Process(object):
-    """ A service to execute external applications """
-    def __init__(self, log):
-        self.log = log
+class rFactory(object):
+    """ A factory to execute CRAN scripts """
+    def __init__(self):
+        pass
 
-    def x_module(self, args, file):
+    def exec_module(self, file, args=None):
         #'var/R/helloWorld.R'
         p = Popen(['Rscript', file], stdout=PIPE, bufsize=1)
         for line in iter(p.stdout.readline, b''):
