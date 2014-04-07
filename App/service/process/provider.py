@@ -8,6 +8,6 @@ class Provider(BaseProvider):
     def __init__(self, process_settings):
         BaseProvider.__init__(self, process_settings)
 
-    def handle_process(self):
-        self._procProviderFactory.exec_module('var/R/helloWorld.R')
+    def handle_process(self, process):
+        self._procProviderFactory.exec_module(process)
         pass
