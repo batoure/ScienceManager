@@ -5,8 +5,9 @@ from service.process.factory.baseProvider import BaseProvider
 
 class Provider(BaseProvider):
 
-    def __init__(self, process_settings):
-        BaseProvider.__init__(self, process_settings)
+    def __init__(self, log, process_settings):
+        self._log = log
+        BaseProvider.__init__(self, self._log, process_settings)
 
     def handle_process(self, process):
         self._procProviderFactory.exec_module(process)

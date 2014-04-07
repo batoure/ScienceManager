@@ -19,6 +19,7 @@ class Program(object):
     M = Object()
     S = Object()
     Args = Object()
+    M.Workflow = Workflow()
     M.Tasks = []
     S.Conf = Configuration(file='./var/cfg.yaml')
     logging.config.dictConfig(S.Conf.get_logging())
@@ -31,17 +32,16 @@ class Program(object):
         program = None
         program = self.Args.program
         if program is not None:
-
             self.M.conn = self.S.Conf.set_database_connection(ConnectionSettings())
-            self.S.job = Job(self.M.conn, self.Log)
+            self.S.job = Job(self.Log, self.M.conn)
             #
-            #self.S.job.get_job_details(self.Args.program)
+            self.M.Workflow = self.S.job.get_job_details(self.M.Workflow, self.Args.program)
             #
-            #self.S.job.setup_job('hello')
-            #M.Tasks should be set by setup job
-            self.M.Tasks = set_tasks()
+            self.M.Workflow.batch_id = self.S.job.register_job(1, 1)
             #
-            self.S.job.process_job_items(self.M.Tasks)
+            self.M.Workflow.tasks = self.S.job.setup_job(self.M.Workflow.id)
+            #
+            self.S.job.process_job_items(self.M.Workflow.tasks)
 
     def _handle_arguments(self):
         self.Log.info('handling arguments')
@@ -52,25 +52,6 @@ class Program(object):
             parser.print_help()
             sys.exit(1)
         parser.parse_args(namespace=self.Args)
-
-
-def set_tasks():
-    tasks = []
-    task = Task()
-    task.number = 1
-    task.action.name = 'R-hello-world'
-    task.action.type.name = 'r'
-    task.action.type.id = 2
-    task.action.text = 'var/R/helloWorld.R'
-    tasks.append(task)
-    task = Task()
-    task.number = 2
-    task.action.name = 'R-hello-world2'
-    task.action.type.name = 'r'
-    task.action.type.id = 2
-    task.action.text = 'var/R/helloWorld.R'
-    tasks.append(task)
-    return tasks
 
 
 class Error(Exception):

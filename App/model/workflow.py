@@ -6,9 +6,8 @@ class Workflow(object):
         self.id = None
         self.name = None
 #TODO: look at lists
-        self.tasks = {}
+        self.tasks = []
         self.batch_id = None
-
 
 
 class Task(object):

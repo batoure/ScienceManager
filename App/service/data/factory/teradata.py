@@ -4,7 +4,8 @@ import pyodbc
 
 class TeradataFactory(object):
 
-    def __init__(self):
+    def __init__(self, log):
+        self._log = log
         self.connection = None
         self._connection_settings = None
 
@@ -31,20 +32,29 @@ class TeradataFactory(object):
             return True
 
     def close(self):
-        #execute open connection in the teradata factory
-        pass
+        try:
+            self.connection.close()
+        except:
+            raise
+        else:
+            return True
 
     def commit(self):
-        #execute open connection in the teradata factory
-        pass
+        try:
+            self.connection.commit()
+        except:
+            raise
+        else:
+            return True
 
     def create_command(self):
-        return Command(self.connection)
+        return Command(self._log, self.connection)
 
 
 class Command(object):
 
-    def __init__(self, connection):
+    def __init__(self, log, connection):
+        self._log = log
         self.connection = connection
         self.command_timeout = 0
         self.__command_text = None
@@ -52,9 +62,9 @@ class Command(object):
     def __enter__(self):
         return self
 
-    def command_text(self, text, var, log):
+    def command_text(self, text, var):
         self.__command_text = text.format(**var)
-        log.info(self.__command_text)
+        self._log.debug(self.__command_text)
 
     def __exit__(self,  type,  value,  traceback):
         return False

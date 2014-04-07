@@ -3,6 +3,7 @@ from service.process.factory.proc_provider_factories import ProcProviderFactorie
 
 
 class BaseProvider(object):
-    def __init__(self, process_settings):
-        self._procProviderFactory = ProcProviderFactories().get_factory(process_settings)
+    def __init__(self, log, process_settings):
+        self._log = log
+        self._procProviderFactory = ProcProviderFactories(self._log).get_factory(process_settings)
         pass
