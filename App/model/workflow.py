@@ -6,18 +6,24 @@ class Workflow(object):
         self.id = None
         self.name = None
 #TODO: look at lists
-        self.tasks = {}
+        self.tasks = []
         self.batch_id = None
 
 
 class Task(object):
     def __init__(self):
-        self.task_num = None
+        self.number = None
         self.action = Action()
 
 
 class Action(object):
     def __init__(self):
         self.name = None
-        self.type_id = None
+        self.type = Type()
         self.text = None
+
+
+class Type(object):
+    def __init__(self):
+        self.name = None
+        self.id = None
